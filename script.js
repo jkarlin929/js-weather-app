@@ -1,4 +1,4 @@
-const BASE_URL = 'http://api.openweathermap.org/data/2.5/weather?';
+const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather?';
 const API_KEY = document.querySelector('[name="appid"]').value;
 
 //selects the form
