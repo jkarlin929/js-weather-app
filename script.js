@@ -1,6 +1,5 @@
 const BASE_URL = 'http://api.openweathermap.org/data/2.5/weather?';
 const API_KEY = document.querySelector('[name="appid"]').value;
-console.log(API_KEY);
 
 //selects the form
 const form = document.querySelector('#form');
@@ -34,15 +33,15 @@ const renderWeather = data => {
   const weatherText = `
   <div class="weather">
     <span>Location:</span> <span>${data.name}</span>
-    <span>Current Temp:</span> <span>${parseInt(data.main.temp)}</span>
+    <span>Current Temp:</span> <span>${parseInt(data.main.temp)}°F</span>
     <span>Overcast:</span> <span>${data.clouds.all}%</span>
     <span>Humidity:</span> <span>${data.main.humidity}%</span>
     <span>Pressure:</span> <span>${data.main.pressure} millibars</span>
-    <p>High Temp:</p> <p>${parseInt(data.main.temp_max)}</p>
-    <p>Low Temp:</p> <p>${parseInt(data.main.temp_min)}%</p>
+    <p>High Temp <i class="fas fa-temperature-high"></i></p> <p>${parseInt(data.main.temp_max)}°F</p>
+    <p>Low Temp <i class="fas fa-temperature-low"></i></p> <p>${parseInt(data.main.temp_min)}°F</p>
     <p>Description:</p> <p>${capWeatherDesc}</p>
-    <p>Sunrise:</p> <p>${sunrise}</p>
-    <p>Sunset:</p> <p>${sunset}</p>
+    <p>Sunrise <i class="fas fa-sun"></i></p> <p>${sunrise}</p>
+    <p>Sunset <i class="far fa-sun"></i></p> <p>${sunset}</p>
   </div>
   `
   weatherDiv.innerHTML = weatherText;
@@ -56,5 +55,4 @@ button.addEventListener('click', async (e) => {
   console.log(input);
   const weatherData = await getData(input);
   renderWeather(weatherData);
-  checkTemp();
 });
