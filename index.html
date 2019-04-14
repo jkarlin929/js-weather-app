@@ -10,11 +10,22 @@
 </head>
 <body>
   <div>
-    <form action="#">
-      <input name="query" type="text" placeholder="Enter a ZIP Code" />
-      <input name="AppID" type="hidden" value="8aac04ebc33f3c51fa258b707bf5bd1a" />
-      <input type="button" value="Submit" />
+    <form id="form" action="#">
+      <input id="zip" name="query" type="text" placeholder="Enter a ZIP Code" />
+      <input name="appid" type="hidden" value="8aac04ebc33f3c51fa258b707bf5bd1a" />
+      <input id="button" type="button" value="Submit" />
     </form>
   </div>
+  <h1 id="temperature"></h1>
+  <h3 id="current-weather"></h3>
+  <p id="location"></p>
+    <div>
+      <p>Low Temp:</p>
+      <p id="low-temp"></p>
+    </div>
+    <div>
+      <p>High Temp:</p>
+      <p id="high-temp"></p>
+    </div>
 </body>
 </html>
