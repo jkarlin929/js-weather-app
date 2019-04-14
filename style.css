@@ -55,7 +55,7 @@ h1 {
 }
 
 h1:hover {
-  color: #fff;
+  color: red;
 }
 
 @media only screen and (min-width: 768px) {
