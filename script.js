@@ -32,20 +32,22 @@ const renderWeather = data => {
   const sunrise = moment(sunriseTzOffset).format("h:mm a");
   console.log({sunset});
   const weatherText = `
-  <span>Location:</span> <span>${data.name}</span>
-  <span>Current Temp:</span> <span>${parseInt(data.main.temp)}</span>
-  <span>Overcast:</span> <span>${data.clouds.all}%</span>
-  <span>Humidity:</span> <span>${data.main.humidity}%</span>
-  <span>Pressure:</span> <span>${data.main.pressure} millibars</span>
-  <p>High Temp:</p> <p>${parseInt(data.main.temp_max)}</p>
-  <p>Low Temp:</p> <p>${parseInt(data.main.temp_min)}%</p>
-  <p>Description:</p> <p>${capWeatherDesc}</p>
-  <p>Sunrise:</p> <p>${sunrise}</p>
-  <p>Sunset:</p> <p>${sunset}</p>
+  <div class="weather">
+    <span>Location:</span> <span>${data.name}</span>
+    <span>Current Temp:</span> <span>${parseInt(data.main.temp)}</span>
+    <span>Overcast:</span> <span>${data.clouds.all}%</span>
+    <span>Humidity:</span> <span>${data.main.humidity}%</span>
+    <span>Pressure:</span> <span>${data.main.pressure} millibars</span>
+    <p>High Temp:</p> <p>${parseInt(data.main.temp_max)}</p>
+    <p>Low Temp:</p> <p>${parseInt(data.main.temp_min)}%</p>
+    <p>Description:</p> <p>${capWeatherDesc}</p>
+    <p>Sunrise:</p> <p>${sunrise}</p>
+    <p>Sunset:</p> <p>${sunset}</p>
+  </div>
   `
   weatherDiv.innerHTML = weatherText;
   document.body.appendChild(weatherDiv);
-}
+};
 
 //add event listener for the button in the form
 button.addEventListener('click', async (e) => {
@@ -54,4 +56,5 @@ button.addEventListener('click', async (e) => {
   console.log(input);
   const weatherData = await getData(input);
   renderWeather(weatherData);
+  checkTemp();
 });
