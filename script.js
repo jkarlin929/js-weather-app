@@ -19,8 +19,18 @@ const getData = async (zip) => {
 };
 
 const renderWeather = data => {
+  const weatherDesc = data.weather[0].description;
+  const capWeatherDesc = weatherDesc.charAt(0).toUpperCase() + weatherDesc.slice(1);
+  console.log(capWeatherDesc);
   const weatherText = `
-  Name: <p>${data.name}</p>
+  <span>Location:</span> <span>${data.name}</span>
+  <span>Current Temp:</span> <span>${parseInt(data.main.temp)}</span>
+  <span>Overcast:</span> <span>${data.clouds.all}%</span>
+  <span>Humidity:</span> <span>${data.main.humidity}%</span>
+  <span>Pressure:</span> <span>${data.main.pressure} millibars</span>
+  <p>High Temp:</p> <p>${parseInt(data.main.temp_max)}</p>
+  <p>Low Temp:</p> <p>${parseInt(data.main.temp_min)}%</p>
+  <p>Description:</p> <p>${capWeatherDesc}</p>
 
   `
   weatherDiv.innerHTML = weatherText;
