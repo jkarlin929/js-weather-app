@@ -10,7 +10,6 @@ const button = document.querySelector('#button');
 const zipcode = document.querySelector('#zip');
 const weatherDiv = document.createElement('div');
 
-
 //get weather data through axios call
 const getData = async (zip) => {
   const resp = await axios(`${BASE_URL}zip=${zip}&units=imperial&appid=${API_KEY}`)
@@ -21,7 +20,17 @@ const getData = async (zip) => {
 const renderWeather = data => {
   const weatherDesc = data.weather[0].description;
   const capWeatherDesc = weatherDesc.charAt(0).toUpperCase() + weatherDesc.slice(1);
-  console.log(capWeatherDesc);
+  //get sunrise data from axios call
+  const sunriseData = data.sys.sunrise;
+  //get sunset data from axios call
+  const sunsetData = data.sys.sunset;
+  //add data in seconds to utc time
+  const sunsetTzOffset = moment.utc("1970-01-01T00:00:00").add(sunsetData, 'seconds').format();
+  const sunriseTzOffset = moment.utc("1970-01-01T00:00:00").add(sunriseData, 'seconds').format();
+  //format sunet and sunrise times to
+  const sunset = moment(sunsetTzOffset).format("h:mm a");
+  const sunrise = moment(sunriseTzOffset).format("h:mm a");
+  console.log({sunset});
   const weatherText = `
   <span>Location:</span> <span>${data.name}</span>
   <span>Current Temp:</span> <span>${parseInt(data.main.temp)}</span>
@@ -31,7 +40,8 @@ const renderWeather = data => {
   <p>High Temp:</p> <p>${parseInt(data.main.temp_max)}</p>
   <p>Low Temp:</p> <p>${parseInt(data.main.temp_min)}%</p>
   <p>Description:</p> <p>${capWeatherDesc}</p>
-
+  <p>Sunrise:</p> <p>${sunrise}</p>
+  <p>Sunset:</p> <p>${sunset}</p>
   `
   weatherDiv.innerHTML = weatherText;
   document.body.appendChild(weatherDiv);
