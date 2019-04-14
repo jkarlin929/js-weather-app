@@ -53,7 +53,9 @@ h1 {
 .location {
   border: 2px solid red;
 }
-
+h1:hover {
+  background: #eee;
+}
 @media only screen and (min-width: 768px) {
   body {
     background-size: cover;
