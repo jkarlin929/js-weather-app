@@ -12,7 +12,6 @@ const weatherDiv = document.createElement('main');
 //get weather data through axios call
 const getData = async (zip) => {
   const resp = await axios(`${BASE_URL}zip=${zip}&units=imperial&appid=${API_KEY}`)
-  console.log(resp.data);
   return resp.data;
 };
 
@@ -53,7 +52,6 @@ const renderWeather = data => {
 button.addEventListener('click', async (e) => {
   e.preventDefault();
   const input = zipcode.value;
-  console.log(input);
   const weatherData = await getData(input);
   renderWeather(weatherData);
 });
